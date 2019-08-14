@@ -1,0 +1,61 @@
+<body>
+
+    <!-- id标识vue作用的范围 -->
+    <div id="app">
+        <!-- {{}} 插值表达式，声明式渲染，绑定vue中的data数据 -->
+        {{ message }}
+    </div>
+
+    <div id="ab">
+        <h1 v-bind:title="name">{{name}}</h1>
+        <h2 :title="name">{{name}}</h1>
+    </div>
+
+    <div id="aboom">
+        <input type="text" v-model="keyword"> 
+        <p>您要查询的是：{{keyword}}</p>
+
+        <!--v-on指令绑定事件，click指定绑定的事件类型，事件发生时调用Vue中的methods节点中定义的方法-->
+        <button v-on:click="search()">查询</button>
+        <!--条件渲染-->
+        <p v-if="addressList.length > 0">{{addressList}}</p>
+        <ul>
+            <!--列表渲染-->
+            <li v-for="address in addressList">{{address}}</li>
+        </ul>
+    </div>
+
+    <script src="vue.min.js"></script>
+    <script>
+        // 创建一个vue对象
+        new Vue({
+            //绑定vue作用的范围
+            el: '#app',
+            //定义页面中显示的模型数据
+            data: {
+                 message: 'Hello lzh!'
+            }
+        })
+        new Vue({
+            el: '#ab',
+            data: {
+                name: 'hellohellohello'
+            }
+        })
+        
+        new Vue({
+            el: '#aboom',
+            data: {
+                keyword: '刘展鸿',
+                addressList: []//查询结果
+            },
+            methods: {
+                search(){
+                    console.log('search')
+                    this.addressList = ['北京','上海','深圳']
+                }
+            }
+        })
+
+    </script>
+</body>
